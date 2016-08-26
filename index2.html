@@ -2,31 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>React Tutorial</title>
+    <title>React Classes</title>
     <script src="https://npmcdn.com/react@15.3.1/dist/react.min.js"></script>
     <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.20/browser.min.js"></script>
 </head>
 <body>
+
 <div id="app"></div>
+
 <script type="text/babel">
+    var SecondComponent = React.createClass({
+        render: function () {
+            return (
+                    // Just returns JSX
+                    <h1>This is another component!</h1>
+            )
+        }
+    });
 
     ReactDOM.render(
-            <h1>Hello world, this is written in JSX!</h1>,
+            <SecondComponent/>,
             document.getElementById('app')
     );
-
-//Takes the element to create and where to create it as arguments
-
-
-    //    ReactDOM.render(
-//            React.createElement(
-//                    'h1',
-//                    null,
-//                    'Hello World!'
-//            ),
-//            document.getElementById('app')
-//    );
 </script>
 </body>
 </html>
