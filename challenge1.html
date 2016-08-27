@@ -36,13 +36,22 @@
             })
 
         },
+
+        //There's a better way to do this with just one function + bind
+
+        addCount: function (value) {
+          this.setState({
+              count: this.state.count + value
+          })
+        },
+
         render: function () {
             return (
                     <div>
                         <h1>{this.state.count}</h1>
-                        <button onClick={this.addOne}>Add 1</button>
-                        <button onClick={this.addFive}>Add 5</button>
-                        <button onClick={this.addTen}>Add 10</button>
+                        <button onClick={this.addCount.bind(this, 1)}>Add 1</button>
+                        <button onClick={this.addCount.bind(this, 5)}>Add 5</button>
+                        <button onClick={this.addCount.bind(this, 10)}>Add 10</button>
                     </div>
             )
         }
