@@ -39,7 +39,7 @@
             },
 
             //Called fourth
-            //Called every tim the component is rendered
+            //Called every time the component is rendered
             increment: function () {
                 console.log("Component is rendered");
                 this.setState({
@@ -47,6 +47,22 @@
                 })
             },
 
+            //Called 5th
+            //Happens only ONCE
+            //AFTER component rendered
+            //Has access to PROPS, STATE, DOM
+            componentDidMount: function () {
+                console.log("Component has rendered");
+//                console.log(ReactDOM.findDOMNode(this));
+                //Finds the DOM node that you pass it
+                this.interval = setInterval(this.increment, 1000)
+            },
+
+            //Happens only ONCE
+            //AFTER component has rendered
+            componentWillUnmount: function () {
+
+            },
             render: function () {
                 return (
                         <button onClick={this.increment}>{this.state.count}</button>
@@ -54,11 +70,29 @@
             }
         });
 
-    ReactDOM.render(
-            <LifecycleComponent/>,
-            document.getElementById('app')
-    )
+        var LifeCycleContainer = React.createClass({
+            mount: function () {
+                ReactDOM.render(
+                        <LifecycleComponent/>,
+                        document.getElementById('render')
+                );
+            },
+            render: function () {
+                console.log("LifeCycleContainer rendered");
+                return(
+                        <div>
+                            <button onClick={this.mount}>Mount</button>
+                            <button onClick={this.unmount}>Unmount</button>
+                            <div id="render"></div>
+                        </div>
+                )
+            }
+        });
 
+    ReactDOM.render(
+            <LifeCycleContainer/>,
+            document.getElementById('app')
+    );
 </script>
 </body>
 </html>
