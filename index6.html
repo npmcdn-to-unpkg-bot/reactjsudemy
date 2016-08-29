@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Component Life Cycle Part 1</title>
+    <script src="https://npmcdn.com/react@15.3.1/dist/react.min.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.20/browser.min.js"></script>
 </head>
 <body>
-$END$
+
+<div id="app"></div>
+
+<script type="text/babel">
+        var LifecycleComponent = React.createClass({
+
+            //Called ONCE
+            //BEFORE component is rendered
+            getDefaultProps: function () {
+                console.log("Getting our default props")
+            },
+
+            //Called second, ONCE
+            //BEFORE component is rendered
+            getInitialState: function () {
+                console.log("Getting initial state");
+              return({
+                  count: 0
+              })
+            },
+
+            //Called third, ONCE
+            //BEFORE component is rendered
+            componentWillMount: function () {
+              //Doesn't have access to the DOM, but does have access to PROPS and STATE
+                console.log(this.state);
+                console.log(this.props);
+                console.log("Component is mounting")
+            },
+
+            //Called fourth
+            //Called every tim the component is rendered
+            increment: function () {
+                console.log("Component is rendered");
+                this.setState({
+                    count: this.state.count + 1
+                })
+            },
+
+            render: function () {
+                return (
+                        <button onClick={this.increment}>{this.state.count}</button>
+                )
+            }
+        });
+
+    ReactDOM.render(
+            <LifecycleComponent/>,
+            document.getElementById('app')
+    )
+
+</script>
 </body>
 </html>
