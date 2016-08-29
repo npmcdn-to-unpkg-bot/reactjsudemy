@@ -58,10 +58,12 @@
                 this.interval = setInterval(this.increment, 1000)
             },
 
+            //Called 6th
             //Happens only ONCE
             //AFTER component has rendered
             componentWillUnmount: function () {
-
+                clearInterval(this.interval);
+                console.log('Component unmounted');
             },
             render: function () {
                 return (
@@ -76,6 +78,9 @@
                         <LifecycleComponent/>,
                         document.getElementById('render')
                 );
+            },
+            unmount: function () {
+                ReactDOM.unmountComponentAtNode(document.getElementById('render'));
             },
             render: function () {
                 console.log("LifeCycleContainer rendered");
